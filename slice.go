@@ -16,7 +16,7 @@ import (
 	"unsafe"
 )
 
-const useReflectSwap = false
+var useReflectSwap = false
 
 const ptrSize = unsafe.Sizeof((*int)(nil))
 

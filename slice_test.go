@@ -104,6 +104,11 @@ func TestSortStruct(t *testing.T) {
 	}
 }
 
+func BenchmarkSortInt64Reflect(b *testing.B) {
+	useReflectSwap = true
+	BenchmarkSortInt64New(b)
+}
+
 func BenchmarkSortInt64New(b *testing.B) {
 	rand.Seed(1)
 	x := make([]int64, nItem)
@@ -128,6 +133,11 @@ func BenchmarkSortInt64Old(b *testing.B) {
 	}
 }
 
+func BenchmarkSortInt32Reflect(b *testing.B) {
+	useReflectSwap = true
+	BenchmarkSortInt32New(b)
+}
+
 func BenchmarkSortInt32New(b *testing.B) {
 	rand.Seed(1)
 	x := make([]int32, nItem)
@@ -150,6 +160,11 @@ func BenchmarkSortInt32Old(b *testing.B) {
 		}
 		sort.Sort(Int32Slice(x))
 	}
+}
+
+func BenchmarkSortStructReflect(b *testing.B) {
+	useReflectSwap = true
+	BenchmarkSortStructNew(b)
 }
 
 func BenchmarkSortStructNew(b *testing.B) {
