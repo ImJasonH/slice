@@ -152,17 +152,6 @@ func BenchmarkSortInt32Old(b *testing.B) {
 	}
 }
 
-func BenchmarkSortStructOld(b *testing.B) {
-	rand.Seed(1)
-	x := make([]S, nItem)
-	for i := 0; i < b.N; i++ {
-		for j := range x {
-			x[j] = S{i: int64(rand.Intn(nItem * 10))}
-		}
-		sort.Sort(SSlice(x))
-	}
-}
-
 func BenchmarkSortStructNew(b *testing.B) {
 	rand.Seed(1)
 	x := make([]S, nItem)
@@ -173,6 +162,17 @@ func BenchmarkSortStructNew(b *testing.B) {
 		Sort(x, func(i, j int) bool {
 			return x[i].i < x[j].i
 		})
+	}
+}
+
+func BenchmarkSortStructOld(b *testing.B) {
+	rand.Seed(1)
+	x := make([]S, nItem)
+	for i := 0; i < b.N; i++ {
+		for j := range x {
+			x[j] = S{i: int64(rand.Intn(nItem * 10))}
+		}
+		sort.Sort(SSlice(x))
 	}
 }
 
